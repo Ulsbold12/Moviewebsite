@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCards";
 import { ArrowRightIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export type Movie = {
   adult: boolean;
@@ -27,14 +28,21 @@ type Response = {
   total_results: number;
 };
 
+type MovieSectionProps = {
+  categoryName: string;
+  categoryPath: string;
+  hideSeeMore?: boolean;
+  limit?: number;
+} 
 export const MovieSection = ({
   categoryName,
   categoryPath,
-}: {
-  categoryName: string;
-  categoryPath: string;
-}) => {
+  limit = 10,
+  hideSeeMore = false
+}:MovieSectionProps ) => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const router = useRouter();
+  
 
   useEffect(() => {
     const getData = async () => {
@@ -61,15 +69,20 @@ export const MovieSection = ({
   }, []);
 
   return (
-    <div className="w-screen h-[978px] flex flex-col items-center gap-10 mt-10">
+    <div className="w-screen h-[978px] flex flex-col items-center gap-10 mt-10" key={categoryName}>
       <div className=" w-[1277px] flex justify-between ">
         <div className="text-3xl font-bold ">{categoryName} </div>
-        <button className="flex items-center">
+        {!hideSeeMore &&(
+        <button onClick={() => {
+        router.push(`/category/${categoryPath}`);
+        }}
+        className="flex ">
           See more <ArrowRightIcon />{" "}
         </button>
+       )}
       </div>
       <div className="grid grid-cols-5 sm-grid-cols-5  gap-10  ">
-        {movies.slice(0, 10).map((movie) => (
+        {movies?.slice(0, limit)?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
@@ -77,65 +90,3 @@ export const MovieSection = ({
   );
 };
 
-// const movieList: MovieCardProps[] = [
-//   {
-//     id: 1,
-//     rank: "2/10",
-//     name: "Dear Santa",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 2,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 3,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 4,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 5,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 6,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 7,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 8,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 9,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-//   {
-//     id: 10,
-//     rank: "2/10",
-//     name: "How To Train Your Dragon Live Action",
-//     image: "/Wicked.jpg",
-//   },
-// ];

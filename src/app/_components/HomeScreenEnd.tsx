@@ -11,6 +11,14 @@ export const HomeScreenEnd = () => {
           </div>
           <h1>© 2024 Movie Z. All Rights Reserved.</h1>
         </div>
+        <div>
+          <h1>Contact information</h1>
+
+        </div>
+        <div>
+          <h1>Follow us</h1>
+          <h2 className="text-white text-semibold">Facebook Instagram Twitter Youtube </h2>
+        </div>
       </div>
     </>
   );
