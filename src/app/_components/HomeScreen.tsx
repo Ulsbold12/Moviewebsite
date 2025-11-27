@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Carousel,
@@ -11,22 +11,57 @@ import {
 import { StarRating } from "../icon/icon";
 import { ModeToggle } from "./ModeToggle";
 import { Header } from "./header";
+import { WatchTrailerButton } from "./WatchTrailerButton";
+
+export type Movie = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number;
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+};
+
+type Response = {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+};
 
 export const HomeScreen = () => {
-  const [open, setOpen] = useState(false);
-  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
-  const fetchTrailer = async () => {
-    const res = await fetch("/api/trailer");
-    const data = await res.json();
+  const [moview, SetMoview] = useState<Movie[]>([]);
 
-    // API-аас авсан трейлер ID гэж үзье (жишээ нь)
-    const youtubeId = data.youtubeId || "xU6LYReBjQM";
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDgxNDA5NGUwOWEyYmEzMDk5NmU1NzZhMmMzMmNmMCIsIm5iZiI6MTc2MzUyMzU0MS41NDgsInN1YiI6IjY5MWQzYmQ1ZjczYTcxODE4ZDU3Y2YzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l0ZY_yZWCxo6VylOrn9VohQfojM0Vj9ifSOTDE7WpWo`,
+              accept: "application/json",
+            },
+          }
+        );
+        const data = (await res.json()) as Response;
+        console.log(data.results);
 
-    // YouTube embed URL болгож байна
-    setTrailerUrl(`https://www.youtube.com/embed/${youtubeId}`);
+        SetMoview(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-    setOpen(true);
-  };
+    getData();
+  }, []);
 
   return (
     <>
@@ -34,74 +69,37 @@ export const HomeScreen = () => {
 
       <Carousel className="w-full pt-6">
         <CarouselContent>
-          <CarouselItem className="relative h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat flex items-center pl-30"
-              style={{
-                backgroundImage: "url('/Wicked.jpg')",
-                backgroundSize: "cover",
-              }}>
-              <div className="flex flex-col w-101 h-[269px] border border-black gap-4">
-                <div>
-                  <h1 className="text-white font-normal text-base">
-                    Now Plaing :
-                  </h1>
-                  <h2 className="text-white font-bold text-4xl">Wicked</h2>
-                  <div className="flex flex-row items-center gap-1">
+          {moview?.map((m) => (
+            <CarouselItem key={m.id} className="relative h-[600px]">
+              <div
+                className="absolute inset-0 bg-center bg-no-repeat bg-cover"
+                style={{
+                  backgroundImage: `url("https://image.tmdb.org/t/p/original${m.backdrop_path}")`,
+                }}
+              ></div>
+
+              <div className="absolute inset-0 bg-black/50 flex items-center pl-32">
+                <div className="flex flex-col w-[450px] gap-4">
+                  <h1 className="text-white text-base">Now Playing :</h1>
+                  <h2 className="text-white font-bold text-4xl">{m.title}</h2>
+
+                  <div className="flex items-center gap-1">
                     <StarRating />
-                    <h1 className="text-white">6/10</h1>
+                    <p className="text-white">{m.vote_average.toFixed(1)}/10</p>
                   </div>
+
+                  <p className="text-white line-clamp-3">{m.overview}</p>
+
+                  <WatchTrailerButton movieId={m.id} />
                 </div>
-                <span className="text-white">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Delectus beatae autem laborum numquam tempora voluptatibus
-                  omnis soluta dolor perspiciatis totam.
-                </span>
-                <button
-                  onClick={fetchTrailer}
-                  className="w-[145px] h-10 bg-white text-black rounded-xl font-bold">
-                  Watch Trailer
-                </button>
               </div>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem>
-            <div className="h-[600px] bg-black text-white">Slide 2</div>
-          </CarouselItem>
-
-          <CarouselItem>
-            <div className="h-[600px] bg-gray-900 text-white">Slide 3</div>
-          </CarouselItem>
+            </CarouselItem>
+          ))}
         </CarouselContent>
 
         <CarouselPrevious className="absolute mx-15 w-[40px] h-[40px] bg-white text-black" />
         <CarouselNext className="absolute mx-15 w-[40px] h-[40px] bg-white text-black" />
       </Carousel>
-      {/* 🎬 TRAILER MODAL */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-          onClick={() => setOpen(false)}>
-          <div
-            className="bg-white p-4 rounded-xl w-[90%] max-w-2xl"
-            onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setOpen(false)}
-              className="float-right text-black">
-              ✕
-            </button>
-
-            {trailerUrl && (
-              <iframe
-                src={trailerUrl}
-                className="w-full h-[350px] mt-3 rounded"
-                allow="autoplay"
-              />
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 };
