@@ -33,16 +33,15 @@ type MovieSectionProps = {
   categoryPath: string;
   hideSeeMore?: boolean;
   limit?: number;
-} 
+};
 export const MovieSection = ({
   categoryName,
   categoryPath,
   limit = 10,
-  hideSeeMore = false
-}:MovieSectionProps ) => {
+  hideSeeMore = false,
+}: MovieSectionProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const router = useRouter();
-  
 
   useEffect(() => {
     const getData = async () => {
@@ -69,24 +68,32 @@ export const MovieSection = ({
   }, []);
 
   return (
-    <div className="w-screen h-[978px] flex flex-col items-center gap-10 mt-10" key={categoryName}>
+    <div
+      className="w-screen h-[978px] flex flex-col items-center gap-10 mt-10"
+      key={categoryName}>
       <div className=" w-[1277px] flex justify-between ">
         <div className="text-3xl font-bold ">{categoryName} </div>
-        {!hideSeeMore &&(
-        <button onClick={() => {
-        router.push(`/category/${categoryPath}`);
-        }}
-        className="flex ">
-          See more <ArrowRightIcon />{" "}
-        </button>
-       )}
+        {!hideSeeMore && (
+          <button
+            onClick={() => {
+              router.push(`/category/${categoryPath}`);
+            }}
+            className="flex ">
+            See more <ArrowRightIcon />{" "}
+          </button>
+        )}
       </div>
       <div className="grid grid-cols-5 sm-grid-cols-5  gap-10  ">
-        {movies?.slice(0, limit)?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+        {movies?.slice(0, limit)?.map((el) => (
+          <MovieCard
+            key={el.id}
+            id={el.id}
+            backdrop_path={el.backdrop_path}
+            title={el.title}
+            vote_average={el.vote_average}
+          />
         ))}
       </div>
     </div>
   );
 };
-
