@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Header } from "../../_components/header";
 import { PaginationDemo } from "../../_components/PaginationDemo";
 import { Pagination } from "@/src/components/ui/pagination";
+import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 
 const CategorySectionDetail = ({
   params,
@@ -33,6 +34,7 @@ const CategorySectionDetail = ({
       <div className="mt-10 flex">
         <PaginationDemo />
       </div>
+      <HomeScreenEnd />
     </>
   );
 };

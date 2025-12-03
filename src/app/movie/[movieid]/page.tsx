@@ -144,7 +144,7 @@ const MovieDetailPage = ({
           <h1 className="text-2xl font-bold mb-4">More like this</h1>
 
           <div className="grid grid-cols-5 gap-4">
-            {similar.map((item) => (
+            {similar?.slice(0, 5)?.map((item) => (
               <div
                 key={item.id}
                 className="cursor-pointer hover:scale-105 transition"
