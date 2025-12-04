@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCards";
 import { ArrowRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+} from "@/src/components/ui/pagination";
 
 export type Movie = {
   adult: boolean;
@@ -42,12 +47,16 @@ export const MovieSection = ({
 }: MovieSectionProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
+      setloading(true);
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${categoryPath}?language=en-US&page=1`,
+          `https://api.themoviedb.org/3/movie/${categoryPath}?language=en-US&page=${currentPage}`,
           {
             headers: {
               Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDgxNDA5NGUwOWEyYmEzMDk5NmU1NzZhMmMzMmNmMCIsIm5iZiI6MTc2MzUyMzU0MS41NDgsInN1YiI6IjY5MWQzYmQ1ZjczYTcxODE4ZDU3Y2YzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l0ZY_yZWCxo6VylOrn9VohQfojM0Vj9ifSOTDE7WpWo`,
@@ -59,13 +68,25 @@ export const MovieSection = ({
         console.log(data.results);
 
         setMovies(data.results);
+        setTotalPage(data.total_pages);
       } catch (error) {
         console.log(error);
       }
+
+      setloading(false);
     };
 
     getData();
-  }, []);
+  }, [currentPage]);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+  const prevPage = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  console.log(currentPage);
 
   return (
     <div
@@ -83,16 +104,73 @@ export const MovieSection = ({
           </button>
         )}
       </div>
-      <div className="grid grid-cols-5 sm-grid-cols-5  gap-10  ">
-        {movies?.slice(0, limit)?.map((el) => (
-          <MovieCard
-            key={el.id}
-            id={el.id}
-            backdrop_path={el.backdrop_path}
-            title={el.title}
-            vote_average={el.vote_average}
-          />
-        ))}
+      {!loading && (
+        <div className="grid grid-cols-5 sm-grid-cols-5  gap-10  ">
+          {movies?.slice(0, limit)?.map((el) => (
+            <MovieCard
+              key={el.id}
+              id={el.id}
+              backdrop_path={el.backdrop_path}
+              title={el.title}
+              vote_average={el.vote_average}
+            />
+          ))}
+        </div>
+      )}
+      <div className="flex justify-end">
+        <Pagination className="w-fit m-0">
+          <PaginationContent>
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                Prev
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage - 1}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                variant="defailt"
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={nextPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage + 1}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {totalPage}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={nextPage}
+                disabled={currentPage === totalPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                Next
+              </button>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );

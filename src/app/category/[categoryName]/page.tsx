@@ -31,9 +31,7 @@ const CategorySectionDetail = ({
           limit={10}
         />
       </div>
-      <div className="mt-10 flex">
-        <PaginationDemo />
-      </div>
+
       <HomeScreenEnd />
     </>
   );

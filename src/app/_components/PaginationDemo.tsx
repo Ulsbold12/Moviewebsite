@@ -10,7 +10,12 @@ import {
   PaginationPrevious,
 } from "@/src/components/ui/pagination";
 
-export function PaginationDemo() {
+
+
+export function PaginationDemo = () => {
+  const nextPage = () => {
+    setCurrentPage((prev) => prev + 1)
+  }
   return (
     <Pagination>
       <PaginationContent>
