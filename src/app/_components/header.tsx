@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Input } from "@/src/components/ui/input";
 import {
@@ -12,12 +12,12 @@ import {
   NavigationMenuViewport,
 } from "@/src/components/ui/navigation-menu";
 import { ModeToggle } from "./ModeToggle";
-
+import { GenreList } from "./GenreList";
 
 export const Header = () => {
-    return (
-        <>
-        <div className="w-screem h-[59px] border border-purple flex justify-center items-center">
+  return (
+    <>
+      <div className="w-screem h-[59px] border border-purple flex justify-center items-center">
         <div className="w-[1280px] h-[36px] flex flex-row justify-between items-center">
           <div className="">
             <img src="/Logo.png" className="w-[92px] h-[20px] object-cover" />
@@ -28,7 +28,9 @@ export const Header = () => {
                 <NavigationMenuTrigger>
                   Genre
                   <NavigationMenuContent>
-                    <NavigationMenuLink className="w-150 h-80 bg-black"></NavigationMenuLink>
+                    <NavigationMenuLink className="w-150 h-80">
+                      <GenreList />
+                    </NavigationMenuLink>
                   </NavigationMenuContent>
                 </NavigationMenuTrigger>
               </NavigationMenuItem>
@@ -36,11 +38,12 @@ export const Header = () => {
             <Input
               className="w-[376px] h-[36px]"
               type="text"
-              placeholder="Search.."></Input>
+              placeholder="Search.."
+            ></Input>
           </div>
           <ModeToggle />
         </div>
       </div>
-        </>
-    )
-}
+    </>
+  );
+};

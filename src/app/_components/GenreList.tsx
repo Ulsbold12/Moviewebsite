@@ -1,15 +1,21 @@
 "use client";
 
-import { Badge, ChevronRight } from "lucide-react";
+import { Badge } from "@/src/components/ui/badge";
+import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
+type Genre = {
+  name: string;
+  id: number;
+};
+
 export const GenreList = () => {
-  const [genres, setGenres] = useState<MovieGenre[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${categoryPath}?language=en-US&page=1`,
+        `https://api.themoviedb.org/3/genre/movie/list?language=en`,
         {
           headers: {
             "Content-type": "application/json",
@@ -18,7 +24,8 @@ export const GenreList = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
+      console.log(data, "dataaaasjde");
+      console.log(data.genres, "hdsgsh");
 
       setGenres(data.genres);
     };
@@ -26,9 +33,9 @@ export const GenreList = () => {
   }, []);
   return (
     <div className="flex flex-wrap gap-4 max-w-md border-r">
-      {genres?.map((el) => {
+      {genres?.map((el, index) => {
         return (
-          <Badge key={el.id} className="flex" varaint="outline">
+          <Badge key={index} className="flex">
             {el.name}
             <ChevronRight />
           </Badge>

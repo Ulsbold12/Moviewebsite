@@ -2,10 +2,10 @@
 
 import { GenreList } from "../_components/GenreList";
 
-const MovieGenre = () => {
+export default function MovieGenre() {
   return (
     <>
       <GenreList />
     </>
   );
-};
+}
