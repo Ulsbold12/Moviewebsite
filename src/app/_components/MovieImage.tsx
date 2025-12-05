@@ -17,7 +17,6 @@ export const MovieImage = ({
 
   const imgUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
   const img = backdrop_path ? imgUrl : "/film (1).png";
-  console.log({ backdrop_path });
 
   if (loading) return <>loaidng....</>;
 

@@ -28,7 +28,7 @@ export const Header = () => {
                 <NavigationMenuTrigger>
                   Genre
                   <NavigationMenuContent>
-                    <NavigationMenuLink className="w-150 h-80">
+                    <NavigationMenuLink className="w-150 h-60">
                       <GenreList />
                     </NavigationMenuLink>
                   </NavigationMenuContent>
@@ -38,8 +38,7 @@ export const Header = () => {
             <Input
               className="w-[376px] h-[36px]"
               type="text"
-              placeholder="Search.."
-            ></Input>
+              placeholder="Search.."></Input>
           </div>
           <ModeToggle />
         </div>

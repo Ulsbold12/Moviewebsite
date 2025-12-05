@@ -117,17 +117,17 @@ const MovieDetailPage = ({
         <div className="w-[1080px] mt-10">
           <span>{movie?.overview}</span>
 
-          <div className="mt-10 flex flex-col gap-5">
-            <div className="flex gap-2">
+          <div className="mt-10 flex flex-col gap-10">
+            <div className="flex gap-2 border-b">
               <h1 className="font-bold">Director:</h1>
               <h2>{director?.name}</h2>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 border-b">
               <h1 className="font-bold">Writers:</h1>
               <h2>{writers?.map((w) => w.name).join(", ")}</h2>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-row border-b">
               <h1 className="font-bold mb-2">Top Stars:</h1>
               <h1 className="list-disc ml-6 flex flex-row gap-3 font-bold">
                 {topStars.map((star) => (
@@ -148,8 +148,7 @@ const MovieDetailPage = ({
               <div
                 key={item.id}
                 className="cursor-pointer hover:scale-105 transition"
-                onClick={() => (window.location.href = `/movie/${item.id}`)}
-              >
+                onClick={() => (window.location.href = `/movie/${item.id}`)}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                   className="rounded-lg w-full"

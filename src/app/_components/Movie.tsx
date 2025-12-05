@@ -85,7 +85,7 @@ export const MovieSection = ({
     setCurrentPage((prev) => prev + 1);
   };
   const prevPage = () => {
-    setCurrentPage((prev) => prev - 1);
+    setCurrentPage(prev > 1 ? prev - 1 : 1);
   };
 
   console.log(currentPage);
@@ -93,8 +93,7 @@ export const MovieSection = ({
   return (
     <div
       className="w-screen h-[978px] flex flex-col items-center gap-10 mt-10"
-      key={categoryName}
-    >
+      key={categoryName}>
       <div className=" w-[1277px] flex justify-between ">
         <div className="text-3xl font-bold ">{categoryName} </div>
         {!hideSeeMore && (
@@ -102,8 +101,7 @@ export const MovieSection = ({
             onClick={() => {
               router.push(`/category/${categoryPath}`);
             }}
-            className="flex "
-          >
+            className="flex ">
             See more <ArrowRightIcon />{" "}
           </button>
         )}
@@ -128,8 +126,7 @@ export const MovieSection = ({
               <button
                 onClick={prevPage}
                 disabled={currentPage === 1}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 Prev
               </button>
             </PaginationItem>
@@ -137,8 +134,7 @@ export const MovieSection = ({
             <PaginationItem>
               <button
                 onClick={prevPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 {currentPage - 1}
               </button>
             </PaginationItem>
@@ -146,8 +142,7 @@ export const MovieSection = ({
             <PaginationItem>
               <button
                 variant="defailt"
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 {currentPage}
               </button>
             </PaginationItem>
@@ -155,8 +150,7 @@ export const MovieSection = ({
             <PaginationItem>
               <button
                 onClick={nextPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 {currentPage + 1}
               </button>
             </PaginationItem>
@@ -164,8 +158,7 @@ export const MovieSection = ({
             <PaginationItem>
               <button
                 onClick={prevPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 {totalPage}
               </button>
             </PaginationItem>
@@ -174,8 +167,7 @@ export const MovieSection = ({
               <button
                 onClick={nextPage}
                 disabled={currentPage === totalPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl"
-              >
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
                 Next
               </button>
             </PaginationItem>

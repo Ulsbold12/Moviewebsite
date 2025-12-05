@@ -19,8 +19,6 @@ export const MovieCard = ({
   title,
   vote_average,
 }: MovieCardProps) => {
-  console.log({ backdrop_path });
-
   return (
     <Link href={`/movie/${id}`}>
       <div key={id} className="rounded-xl overflow-hidden">

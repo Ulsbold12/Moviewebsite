@@ -3,7 +3,8 @@
 import { Badge } from "@/src/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 type Genre = {
   name: string;
   id: number;
@@ -11,6 +12,25 @@ type Genre = {
 
 export const GenreList = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const genreIds = searchParams.get("genreIds")?.split(",") || [];
+
+  const handleClickGenre = (genreId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    const test = genreIds.length > 0 ? [...genreIds, genreId] : [genreId];
+
+    const updateGenreIds = genreIds?.includes(genreId)
+      ? genreIds.filter((id) => id !== genreId)
+      : test;
+
+    const param = updateGenreIds.length > 0 ? updateGenreIds.join(",") : "";
+
+    params.set("genreIds", param);
+    const path = updateGenreIds.length > 0 ? params : "";
+    router.push("/genres?" + path);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,11 +51,18 @@ export const GenreList = () => {
     };
     fetchData();
   }, []);
+
   return (
-    <div className="flex flex-wrap gap-4 max-w-md border-r">
-      {genres?.map((el, index) => {
+    <div className="flex flex-wrap gap-4 max-w-md border-r ">
+      {genres?.map((el) => {
         return (
-          <Badge key={index} className="flex">
+          <Badge
+            key={el.id}
+            className="flex"
+            variant={
+              genreIds.includes(el.id.toString()) ? "default" : "outline"
+            }
+            onClick={() => handleClickGenre(el.id.toString())}>
             {el.name}
             <ChevronRight />
           </Badge>
