@@ -6,7 +6,7 @@ import {
   PaginationItem,
 } from "@/src/components/ui/pagination";
 
-export const NextPrev = ({ currentPage, totalPage }: MovieSectionProps) => {
+export const NextPrev = ({ currentPage, totalPage}) => {
   const nextPage = () => {
     setCurrentPage((prev) => prev + 1);
   };

@@ -13,6 +13,7 @@ import {
 } from "@/src/components/ui/navigation-menu";
 import { ModeToggle } from "./ModeToggle";
 import { GenreList } from "./GenreList";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -20,7 +21,9 @@ export const Header = () => {
       <div className="w-screem h-[59px] border border-purple flex justify-center items-center">
         <div className="w-[1280px] h-[36px] flex flex-row justify-between items-center">
           <div className="">
-            <img src="/Logo.png" className="w-[92px] h-[20px] object-cover" />
+            <Link href="/" aria-label="Нүүр хуудас руу буцах">
+              <img src="/Logo.png" className="w-[92px] h-[20px] object-cover" />
+            </Link>
           </div>
           <div className="flex flex-row">
             <NavigationMenu className="w-[97px] h-[36px]">

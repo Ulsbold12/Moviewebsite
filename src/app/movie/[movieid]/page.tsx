@@ -6,6 +6,7 @@ import { Header } from "../../_components/header";
 import ReactPlayer from "react-player";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
+import { Badge, badgeVariants } from "@/src/components/ui/badge";
 
 export type Movie = {
   adult: boolean;
@@ -22,6 +23,12 @@ export type Movie = {
   vote_average: number;
   vote_count: number;
   runtime: number;
+  genres: Genre[];
+};
+
+type Genre = {
+  id: number;
+  name: string;
 };
 
 export type VideoItem = {
@@ -115,7 +122,20 @@ const MovieDetailPage = ({
         </div>
 
         <div className="w-[1080px] mt-10">
-          <span>{movie?.overview}</span>
+          <div className="flex flex-col gap-5">
+            <div className="flex gap-2">
+              {movie?.genres.map((g) => (
+                <Badge
+                  key={g.id}
+                  className="bg-white text-black font-bold border border-black
+                ">
+                  {g.name}
+                </Badge>
+              ))}
+            </div>
+
+            <span>{movie?.overview}</span>
+          </div>
 
           <div className="mt-10 flex flex-col gap-10">
             <div className="flex gap-2 border-b">
@@ -141,7 +161,10 @@ const MovieDetailPage = ({
       {/* more like this heseg  */}
       <div className="flex justify-center">
         <div className="w-[1080px] mt-20">
-          <h1 className="text-2xl font-bold mb-4">More like this</h1>
+          <div className="flex flex-row justify-between">
+            <h1 className="text-2xl font-bold mb-4">More like this</h1>
+            <h1 className="text-xl">See more</h1>
+          </div>
 
           <div className="grid grid-cols-5 gap-4">
             {similar?.slice(0, 5)?.map((item) => (
