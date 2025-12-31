@@ -33,8 +33,23 @@ const CategorySectionDetail = ({
           categoryPath={categoryName}
           hideSeeMore={true}
           limit={10}
+          currentPage={currentPage}
+          onTotalPages={setTotalPages}
         />
-        <NextPrev currentPage={currentpage} totalPage={totalpage} />
+
+        <div className="flex gap-2 justify-center mt-4">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}>
+            Prev
+          </button>
+          <span>{currentPage}</span>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPage))}
+            disabled={currentPage === totalPage}>
+            Next
+          </button>
+        </div>
       </div>
 
       <HomeScreenEnd />

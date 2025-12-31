@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { StarRating } from "../icon/icon";
+
 import { Movie } from "./Movie";
 import { MovieImage } from "./MovieImage";
 
@@ -29,7 +29,6 @@ export const MovieCard = ({
         />
         <div className="w-[229px] h-[95px] bg-zinc-100 rounded-br-xl rounded-bl-xl flex flex-col gap-3 pt-3">
           <div className="flex gap-1 ">
-            <StarRating />
             <h1 className="text-black">{vote_average}/10</h1>
           </div>
           <h2 className="text-black">{title}</h2>

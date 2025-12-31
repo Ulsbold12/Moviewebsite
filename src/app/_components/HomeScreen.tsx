@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/src/components/ui/carousel";
-import { StarRating } from "../icon/icon";
+
 import { ModeToggle } from "./ModeToggle";
 import { Header } from "./header";
 import { WatchTrailerButton } from "./WatchTrailerButton";
@@ -75,8 +75,7 @@ export const HomeScreen = () => {
                 className="absolute inset-0 bg-center bg-no-repeat bg-cover"
                 style={{
                   backgroundImage: `url("https://image.tmdb.org/t/p/original${m.backdrop_path}")`,
-                }}
-              ></div>
+                }}></div>
 
               <div className="absolute inset-0 bg-black/50 flex items-center pl-32">
                 <div className="flex flex-col w-[450px] gap-4">
@@ -84,7 +83,6 @@ export const HomeScreen = () => {
                   <h2 className="text-white font-bold text-4xl">{m.title}</h2>
 
                   <div className="flex items-center gap-1">
-                    <StarRating />
                     <p className="text-white">{m.vote_average.toFixed(1)}/10</p>
                   </div>
 

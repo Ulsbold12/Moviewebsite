@@ -73,9 +73,6 @@ export const MovieSection = ({
 
         setMovies(data.results);
         setTotalPage(data.total_pages);
-        if (onTotalPages) {
-          onTotalPages(data.total_pages);
-        }
       } catch (error) {
         console.log(error);
       }
@@ -86,12 +83,12 @@ export const MovieSection = ({
     getData();
   }, [currentPage]);
 
-  // const nextPage = () => {
-  //   setCurrentPage((prev) => prev + 1);
-  // };
-  // const prevPage = () => {
-  //   setCurrentPage(prev > 1 ? prev - 1 : 1);
-  // };
+  const nextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+  const prevPage = () => {
+    setCurrentPage(prev > 1 ? prev - 1 : 1);
+  };
 
   console.log(currentPage);
 
@@ -124,6 +121,61 @@ export const MovieSection = ({
           ))}
         </div>
       )}
+      <div className="flex justify-end">
+        <Pagination className="w-fit m-0">
+          <PaginationContent>
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                Prev
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage - 1}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                variant="defailt"
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={nextPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {currentPage + 1}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={prevPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                {totalPage}
+              </button>
+            </PaginationItem>
+
+            <PaginationItem>
+              <button
+                onClick={nextPage}
+                disabled={currentPage === totalPage}
+                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
+                Next
+              </button>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 };
