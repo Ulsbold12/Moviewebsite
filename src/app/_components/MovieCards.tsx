@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
-import { Movie } from "./Movie";
 import { MovieImage } from "./MovieImage";
 
 type MovieCardProps = {

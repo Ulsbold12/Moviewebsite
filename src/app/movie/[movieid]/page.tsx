@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
 import { Badge, badgeVariants } from "@/src/components/ui/badge";
+import { useRouter } from "next/navigation";
 
 export type Movie = {
   adult: boolean;
@@ -45,6 +46,7 @@ const MovieDetailPage = ({
 }: {
   params: Promise<{ movieid: string }>;
 }) => {
+  const router = useRouter();
   const { movieid } = use(params);
   const [movie, setMovie] = useState<Movie>();
   const [video, setVideo] = useState<string>("");
@@ -163,7 +165,9 @@ const MovieDetailPage = ({
         <div className="w-[1080px] mt-20">
           <div className="flex flex-row justify-between">
             <h1 className="text-2xl font-bold mb-4">More like this</h1>
-            <h1 className="text-xl">See more</h1>
+            <h1 onClick={() => router.push("/similar/")} className="text-xl">
+              See more
+            </h1>
           </div>
 
           <div className="grid grid-cols-5 gap-4">

@@ -1,6 +1,5 @@
 "use client";
 
-import { StarRating } from "../icon/icon";
 import { useEffect, useState } from "react";
 
 export type Movie = {
@@ -26,11 +25,7 @@ type Response = {
 };
 
 export const MovieListPopular = () => {
-  return (
-    <>
-      
-    </>
-  );
+  return <></>;
 };
 
 // const moviePopular: MoviePopularCardProps[] = [

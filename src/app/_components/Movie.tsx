@@ -9,6 +9,7 @@ import {
   PaginationContent,
   PaginationItem,
 } from "@/src/components/ui/pagination";
+import { NextPrev } from "./Nextprev";
 
 export type Movie = {
   adult: boolean;
@@ -39,20 +40,18 @@ type MovieSectionProps = {
   hideSeeMore?: boolean;
   limit?: number;
   currentPage: number;
-  totalPage: number;
-  onTotalPages: string;
+  onTotalPagesChange?: (n: number) => void;
 };
 export const MovieSection = ({
   categoryName,
   categoryPath,
   limit = 10,
   hideSeeMore = false,
-  onTotalPages,
+  currentPage,
+  onTotalPagesChange,
 }: MovieSectionProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
@@ -66,13 +65,13 @@ export const MovieSection = ({
               Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDgxNDA5NGUwOWEyYmEzMDk5NmU1NzZhMmMzMmNmMCIsIm5iZiI6MTc2MzUyMzU0MS41NDgsInN1YiI6IjY5MWQzYmQ1ZjczYTcxODE4ZDU3Y2YzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l0ZY_yZWCxo6VylOrn9VohQfojM0Vj9ifSOTDE7WpWo`,
               accept: "application/json",
             },
-          }
+          },
         );
         const data = (await res.json()) as Response;
         console.log(data.results);
 
         setMovies(data.results);
-        setTotalPage(data.total_pages);
+        onTotalPagesChange?.(data.total_pages);
       } catch (error) {
         console.log(error);
       }
@@ -81,16 +80,7 @@ export const MovieSection = ({
     };
 
     getData();
-  }, [currentPage]);
-
-  const nextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-  const prevPage = () => {
-    setCurrentPage(prev > 1 ? prev - 1 : 1);
-  };
-
-  console.log(currentPage);
+  }, [categoryPath, currentPage, onTotalPagesChange]);
 
   return (
     <div
@@ -121,61 +111,6 @@ export const MovieSection = ({
           ))}
         </div>
       )}
-      <div className="flex justify-end">
-        <Pagination className="w-fit m-0">
-          <PaginationContent>
-            <PaginationItem>
-              <button
-                onClick={prevPage}
-                disabled={currentPage === 1}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                Prev
-              </button>
-            </PaginationItem>
-
-            <PaginationItem>
-              <button
-                onClick={prevPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                {currentPage - 1}
-              </button>
-            </PaginationItem>
-
-            <PaginationItem>
-              <button
-                variant="defailt"
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                {currentPage}
-              </button>
-            </PaginationItem>
-
-            <PaginationItem>
-              <button
-                onClick={nextPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                {currentPage + 1}
-              </button>
-            </PaginationItem>
-
-            <PaginationItem>
-              <button
-                onClick={prevPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                {totalPage}
-              </button>
-            </PaginationItem>
-
-            <PaginationItem>
-              <button
-                onClick={nextPage}
-                disabled={currentPage === totalPage}
-                className="w-[90px] h-[30px] bg-black text-white font-bold rounded-2xl">
-                Next
-              </button>
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
     </div>
   );
 };
