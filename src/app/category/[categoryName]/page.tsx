@@ -5,8 +5,6 @@ import { MovieSection } from "../../_components/Movie";
 import { categories } from "../../_constants";
 import { useState } from "react";
 import { Header } from "../../_components/header";
-
-import { Pagination } from "@/src/components/ui/pagination";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { NextPrev } from "../../_components/Nextprev";
 

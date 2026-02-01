@@ -165,7 +165,12 @@ const MovieDetailPage = ({
         <div className="w-[1080px] mt-20">
           <div className="flex flex-row justify-between">
             <h1 className="text-2xl font-bold mb-4">More like this</h1>
-            <h1 onClick={() => router.push("/similar/")} className="text-xl">
+            <h1
+              onClick={() => {
+                console.log("push movieid=", movieid);
+                router.push(`/similar/${movieid}`);
+              }}
+              className="text-xl">
               See more
             </h1>
           </div>

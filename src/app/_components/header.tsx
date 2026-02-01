@@ -18,7 +18,7 @@ import Link from "next/link";
 export const Header = () => {
   return (
     <>
-      <div className="w-screem h-[59px] border border-purple flex justify-center items-center">
+      <div className="w-screem h-[59px]  border-purple flex justify-center items-center">
         <div className="w-[1280px] h-[36px] flex flex-row justify-between items-center">
           <div className="">
             <Link href="/" aria-label="Нүүр хуудас руу буцах">
