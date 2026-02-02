@@ -14,6 +14,7 @@ import {
 import { ModeToggle } from "./ModeToggle";
 import { GenreList } from "./GenreList";
 import Link from "next/link";
+import { SearchInput } from "./SearchInput";
 
 export const Header = () => {
   return (
@@ -38,10 +39,7 @@ export const Header = () => {
                 </NavigationMenuTrigger>
               </NavigationMenuItem>
             </NavigationMenu>
-            <Input
-              className="w-[376px] h-[36px]"
-              type="text"
-              placeholder="Search.."></Input>
+            <SearchInput />
           </div>
           <ModeToggle />
         </div>
