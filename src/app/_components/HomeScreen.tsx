@@ -10,8 +10,8 @@ import {
 } from "@/src/components/ui/carousel";
 
 import { ModeToggle } from "./ModeToggle";
-import { Header } from "./header";
 import { WatchTrailerButton } from "./WatchTrailerButton";
+import { Header } from "./Header";
 
 export type Movie = {
   adult: boolean;

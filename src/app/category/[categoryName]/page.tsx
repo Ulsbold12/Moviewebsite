@@ -4,7 +4,7 @@ import { use } from "react";
 import { MovieSection } from "../../_components/Movie";
 import { categories } from "../../_constants";
 import { useState } from "react";
-import { Header } from "../../_components/header";
+import { Header } from "../../_components/Header";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { NextPrev } from "../../_components/Nextprev";
 
