@@ -1,7 +1,7 @@
 "use client";
 
 import { GenreList } from "../../_components/GenreList";
-import { Header } from "../../_components/Header";
+import { Header } from "../../_components";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { MoviesByGenres } from "../../_components/MoviesByGenres";
 

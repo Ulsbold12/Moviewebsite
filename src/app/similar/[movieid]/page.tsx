@@ -2,7 +2,7 @@
 import { use, useState } from "react";
 import { MoreLikeSection } from "../../_components/MoreLikeSection";
 import { NextPrev } from "../../_components/Nextprev";
-import { Header } from "../../_components/Header";
+import { Header } from "../../_components";
 
 const SimilarPage = ({ params }: { params: Promise<{ movieid: string }> }) => {
   const { movieid } = use(params);

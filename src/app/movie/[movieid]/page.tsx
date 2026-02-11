@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Header } from "../../_components/Header";
+import { Header } from "../../_components";
 import ReactPlayer from "react-player";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
