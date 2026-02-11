@@ -1,11 +1,12 @@
 "use client";
-import { use, useState } from "react";
+import { useState } from "react";
 import { MoreLikeSection } from "../../_components/MoreLikeSection";
 import { NextPrev } from "../../_components/Nextprev";
 import { Header } from "../../_components/Header";
+import { useParams } from "next/navigation";
 
-const SimilarPage = ({ params }: { params: Promise<{ movieid: string }> }) => {
-  const { movieid } = use(params);
+const SimilarPage = () => {
+  const { movieid } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
