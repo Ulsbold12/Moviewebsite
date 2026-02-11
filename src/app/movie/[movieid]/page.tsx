@@ -6,7 +6,7 @@ import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
 import { Badge } from "@/src/components/ui/badge";
 import { use } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Header } from "../../_components/Header";
 
 type Genre = { id: number; name: string };
@@ -137,13 +137,9 @@ function MovieDetailSkeleton() {
   );
 }
 
-export default function MovieDetailPage({
-  params,
-}: {
-  params: Promise<{ movieid: string }>;
-}) {
+export default function MovieDetailPage() {
   const router = useRouter();
-  const { movieid } = use(params);
+  const { movieid } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [video, setVideo] = useState<string>("");
   const [credits, setCredits] = useState<Credits | null>(null);

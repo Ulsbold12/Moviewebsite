@@ -8,10 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/src/components/ui/carousel";
-
+import { Header } from "./Header";
 import { ModeToggle } from "./ModeToggle";
 import { WatchTrailerButton } from "./WatchTrailerButton";
-import { Header } from "./Header";
 
 export type Movie = {
   adult: boolean;
