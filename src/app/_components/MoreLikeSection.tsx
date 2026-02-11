@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCards";
 import { getData } from "../_utils/getData";
+import { ChevronRightIcon } from "lucide-react";
 
 type Movie = {
   id: number;

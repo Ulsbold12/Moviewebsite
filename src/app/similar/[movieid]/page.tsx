@@ -4,6 +4,7 @@ import { MoreLikeSection } from "../../_components/MoreLikeSection";
 import { NextPrev } from "../../_components/Nextprev";
 import { Header } from "../../_components/Header";
 import { useParams } from "next/navigation";
+import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 
 const SimilarPage = () => {
   const { movieid } = useParams();
@@ -26,6 +27,8 @@ const SimilarPage = () => {
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
+
+      <HomeScreenEnd />
     </div>
   );
 };

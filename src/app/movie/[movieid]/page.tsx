@@ -5,9 +5,9 @@ import ReactPlayer from "react-player";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
 import { Badge } from "@/src/components/ui/badge";
-import { use } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Header } from "../../_components/Header";
+import { ArrowRightIcon } from "lucide-react";
 
 type Genre = { id: number; name: string };
 
@@ -299,8 +299,9 @@ export default function MovieDetailPage() {
             <h1 className="text-2xl font-bold mb-4">More like this</h1>
             <h1
               onClick={() => router.push(`/similar/${movieid}`)}
-              className="text-xl cursor-pointer">
+              className="text-xl cursor-pointer flex items-center justify-center gap-1">
               See more
+              <ArrowRightIcon className="w-5 h-5 flex items-center justify-center mt-1" />
             </h1>
           </div>
 

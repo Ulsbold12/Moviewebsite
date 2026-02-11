@@ -1,19 +1,15 @@
 "use client";
 
-import { use } from "react";
 import { MovieSection } from "../../_components/Movie";
 import { categories } from "../../_constants";
 import { useState } from "react";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { NextPrev } from "../../_components/Nextprev";
 import { Header } from "../../_components/Header";
+import { useParams } from "next/navigation";
 
-const CategorySectionDetail = ({
-  params,
-}: {
-  params: Promise<{ categoryName: string }>;
-}) => {
-  const { categoryName } = use(params);
+const CategorySectionDetail = () => {
+  const { categoryName } = useParams();
   const title =
     categories.find((el) => el.categoryPath === categoryName)?.categoryName ||
     "";
