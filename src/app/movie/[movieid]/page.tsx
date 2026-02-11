@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Header } from "../../_components";
 import ReactPlayer from "react-player";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
 import { Badge } from "@/src/components/ui/badge";
 import { use } from "react";
 import { useRouter } from "next/navigation";
+import { Header } from "../../_components/Header";
 
 type Genre = { id: number; name: string };
 

@@ -4,9 +4,9 @@ import { use } from "react";
 import { MovieSection } from "../../_components/Movie";
 import { categories } from "../../_constants";
 import { useState } from "react";
-import { Header } from "../../_components";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { NextPrev } from "../../_components/Nextprev";
+import { Header } from "../../_components/Header";
 
 const CategorySectionDetail = ({
   params,
@@ -17,7 +17,6 @@ const CategorySectionDetail = ({
   const title =
     categories.find((el) => el.categoryPath === categoryName)?.categoryName ||
     "";
-  const [hideSeeMore, setHideSeeMore] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
