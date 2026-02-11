@@ -202,7 +202,6 @@ export default function MovieDetailPage({
     [credits],
   );
 
-  // ✅ skeleton нөхцөл
   if (loading || !movie) return <MovieDetailSkeleton />;
 
   return (
