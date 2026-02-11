@@ -9,7 +9,7 @@ import { Header } from "../../_components/Header";
 import { useParams } from "next/navigation";
 
 const CategorySectionDetail = () => {
-  const { categoryName } = useParams();
+  const { categoryName } = useParams<{ categoryName: string }>();
   const title =
     categories.find((el) => el.categoryPath === categoryName)?.categoryName ||
     "";
@@ -23,7 +23,7 @@ const CategorySectionDetail = () => {
         <Header />
         <MovieSection
           categoryName={title}
-          categoryPath={categoryName}
+          categoryPath={categoryName ?? ""}
           hideSeeMore={true}
           limit={10}
           currentPage={currentPage}
