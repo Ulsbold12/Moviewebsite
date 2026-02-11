@@ -6,7 +6,6 @@ import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { getData } from "../../_utils/getData";
 import { Badge } from "@/src/components/ui/badge";
 import { useParams, useRouter } from "next/navigation";
-import { Header } from "../../_components/Header";
 import { ArrowRightIcon } from "lucide-react";
 
 type Genre = { id: number; name: string };
@@ -43,8 +42,6 @@ const SkeletonBlock = ({ className = "" }: { className?: string }) => (
 function MovieDetailSkeleton() {
   return (
     <>
-      <Header />
-
       <div className="flex flex-col items-center mt-20">
         <div className="flex flex-col w-[1080px]">
           {/* Top row */}

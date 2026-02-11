@@ -1,15 +1,12 @@
 "use client";
 
 import { GenreList } from "../../_components/GenreList";
-import { Header } from "../../_components/Header";
 import { HomeScreenEnd } from "../../_components/HomeScreenEnd";
 import { MoviesByGenres } from "../../_components/MoviesByGenres";
 
 export default function MovieGenreClient() {
   return (
     <div>
-      <Header />
-
       <div className="flex justify-end pr-10">
         <h1 className="text-3xl font-bold mr-40">Search result</h1>
       </div>
