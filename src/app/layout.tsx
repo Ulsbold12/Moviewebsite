@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "./_components/theme-provider";
+import { Header } from "./_components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
+          <Header />
           {children}
         </ThemeProvider>
       </body>

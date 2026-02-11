@@ -202,8 +202,6 @@ export default function MovieDetailPage() {
 
   return (
     <>
-      <Header />
-
       <div className="flex flex-col items-center mt-20">
         <div className="flex flex-col w-[1080px] h-[524px]">
           <div className="flex justify-between">

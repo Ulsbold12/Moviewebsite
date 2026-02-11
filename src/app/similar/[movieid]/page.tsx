@@ -13,8 +13,6 @@ const SimilarPage = () => {
 
   return (
     <div>
-      <Header />
-
       <MoreLikeSection
         movieId={Number(movieid)}
         limit={10}

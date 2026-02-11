@@ -20,14 +20,14 @@ export const Header = () => {
   return (
     <>
       <div className="w-screem h-[59px]  border-purple flex justify-center items-center">
-        <div className="w-[1280px] h-[36px] flex flex-row justify-between items-center">
+        <div className="w-7xl h-9 flex flex-row justify-between items-center">
           <div className="">
             <Link href="/" aria-label="Нүүр хуудас руу буцах">
-              <img src="/Logo.png" className="w-[92px] h-[20px] object-cover" />
+              <img src="/Logo.png" className="w-[92px] h-5 object-cover" />
             </Link>
           </div>
           <div className="flex flex-row">
-            <NavigationMenu className="w-[97px] h-[36px]">
+            <NavigationMenu className="w-[97px] h-9">
               <NavigationMenuItem>
                 <NavigationMenuTrigger>
                   Genre

@@ -20,7 +20,6 @@ const CategorySectionDetail = () => {
   return (
     <>
       <div className="">
-        <Header />
         <MovieSection
           categoryName={title}
           categoryPath={categoryName ?? ""}

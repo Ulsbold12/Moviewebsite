@@ -64,8 +64,6 @@ export const HomeScreen = () => {
 
   return (
     <>
-      <Header />
-
       <Carousel className="w-full pt-6">
         <CarouselContent>
           {moview?.map((m) => (
