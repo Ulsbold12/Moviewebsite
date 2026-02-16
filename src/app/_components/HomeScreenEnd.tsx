@@ -1,14 +1,19 @@
 "use cient";
 
+import Link from "next/link";
+
 export const HomeScreenEnd = () => {
   return (
     <>
-      <div className="w-screen h-[280px] bg-indigo-700 mt-20 pt-10 flex flex-row justify-between pr-10 pl-10">
-        <div>
-          <div className="flex ">
-            <img src="/film (1).png" className="" />
-            <h1 className="text-white">Movie Z</h1>
-          </div>
+      <div className="w-screen h-[280px] bg-indigo-700 mt-20 pt-10 flex flex-row justify-between pr-20 pl-20">
+        <div className="flex flex-col gap-2">
+          <Link href="./">
+            <div className="flex gap-1">
+              <img src="/film (1).png" className="" />
+              <h1 className="text-white">Movie Z</h1>
+            </div>
+          </Link>
+
           <h1 className="text-white">© 2024 Movie Z. All Rights Reserved.</h1>
         </div>
         <div className="flex flex-row gap-10">

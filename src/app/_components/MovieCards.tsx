@@ -44,7 +44,7 @@ export const MovieCard = ({
               {vote_average?.toFixed(1)}/10
             </h1>
           </div>
-          <h2 className="text-black">{title}</h2>
+          <h2 className="text-black ml-1 font-bold">{title}</h2>
         </div>
       </div>
     </Link>

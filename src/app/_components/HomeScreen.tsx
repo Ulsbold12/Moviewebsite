@@ -100,7 +100,7 @@ export const HomeScreen = () => {
 
                   <p className="text-white line-clamp-3">{m.overview}</p>
 
-                  <WatchTrailerButton movieId={m.id} />
+                  <WatchTrailerButton movieId={m.id} key={m.id} />
                 </div>
               </div>
             </CarouselItem>
