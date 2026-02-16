@@ -22,7 +22,7 @@ function buildPages(current: number, total: number): PageItem[] {
   }
 
   const items: PageItem[] = [];
-  const window = 2; // current-ийн хоёр талд хэдийг харуулах вэ
+  const window = 2; 
   const left = Math.max(2, current - window);
   const right = Math.min(total - 1, current + window);
 
