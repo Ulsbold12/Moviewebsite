@@ -120,6 +120,7 @@ export const MovieSection = ({
               key={el.id}
               id={el.id}
               backdrop_path={el.backdrop_path}
+              poster_path={el.poster_path}
               title={el.title}
               vote_average={el.vote_average}
             />

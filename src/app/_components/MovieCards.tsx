@@ -6,6 +6,7 @@ import { MovieImage } from "./MovieImage";
 type MovieCardProps = {
   id: number;
   backdrop_path?: string;
+  poster_path?: string;
   title: string;
   vote_average: number;
   className?: string;
@@ -14,6 +15,7 @@ type MovieCardProps = {
 export const MovieCard = ({
   id,
   backdrop_path,
+  poster_path,
   title,
   vote_average,
 }: MovieCardProps) => {
@@ -22,6 +24,7 @@ export const MovieCard = ({
       <div key={id} className="rounded-xl overflow-hidden">
         <MovieImage
           backdrop_path={backdrop_path}
+          poster_path={poster_path}
           title={title}
           className="w-[229px] h-[340px]"
         />

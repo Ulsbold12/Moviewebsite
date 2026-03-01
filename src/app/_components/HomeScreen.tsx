@@ -69,10 +69,18 @@ export const HomeScreen = () => {
           {moview?.map((m) => (
             <CarouselItem key={m.id} className="relative h-[600px]">
               <div
-                className="absolute inset-0 bg-center bg-no-repeat bg-cover"
+                className="absolute inset-0 bg-center bg-no-repeat bg-cover bg-gray-800"
                 style={{
-                  backgroundImage: `url("https://image.tmdb.org/t/p/original${m.backdrop_path}")`,
-                }}></div>
+                  backgroundImage: m.backdrop_path
+                    ? `url("https://image.tmdb.org/t/p/original${m.backdrop_path}")`
+                    : "none",
+                }}>
+                {!m.backdrop_path && (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <p className="text-gray-500 text-xl">No Image Available</p>
+                  </div>
+                )}
+              </div>
 
               <div className="absolute inset-0 bg-black/50 flex items-center pl-32">
                 <div className="flex flex-col w-[450px] gap-4">

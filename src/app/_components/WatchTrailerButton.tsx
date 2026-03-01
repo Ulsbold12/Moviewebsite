@@ -71,7 +71,7 @@ export const WatchTrailerButton = ({ movieId }: TrailerButtonProps) => {
               &times;
             </button>
 
-            {/* ✅ key өгөөд iframe-г шинэчлүүлнэ */}
+            {/*  key өгөөд iframe-г шинэчлүүлнэ */}
             <iframe
               key={`${movieId}-${trailerKey}`}
               className="w-full h-full rounded-lg"
